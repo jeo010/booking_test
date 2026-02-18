@@ -15,11 +15,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create 2 admins
+        User::factory()->admin()->count(2)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create 3 organizers
+        User::factory()->organizer()->count(3)->create();
+
+        // Create 10 customers
+        User::factory()->customer()->count(10)->create();
+
+        // Call other seeders
+        $this->call([
+            EventSeeder::class,
+            TicketSeeder::class,
+            BookingSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }
+

@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phonenumber',
+        'role'
     ];
 
     /**
@@ -32,6 +34,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function events(){
+        return $this->hasMany(\App\Models\Event::class);
+    }
+
+    public function bookings(){
+        return $this->hasMany(\App\Models\Booking::class);
+    }
 
     /**
      * Get the attributes that should be cast.
